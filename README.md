@@ -4,7 +4,7 @@
 ## 环境搭建
 此源码是运行在Linux系统下的，在使用build.sh编译前，需要安装必要的环境，包括muduo、redis、MySQL、nginx
 ### 安装muduo
-可以参考[muduo安装]([URL](https://blog.csdn.net/m0_72740458/article/details/149244766?spm=1001.2014.3001.5501))
+可以参考[muduo安装](https://blog.csdn.net/m0_72740458/article/details/149244766?spm=1001.2014.3001.5501)
 ### 安装redis
 sudo apt-get install redis-server
 ### 安装MySQL
