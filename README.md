@@ -17,16 +17,3 @@ cd nginx-x.x.x
 ./configure --with-stream  
 make && sudo make install  
 编译完成后，nginx库会默认安装在/usr/local/nginx目录下
-## 目录结构
-├── src/                  # 源代码目录  
-│   ├── main.js           # 主入口文件  
-│   ├── components/       # 组件目录  
-│   │   ├── Header.vue  
-│   │   └── Footer.vue  
-│   └── utils/            # 工具函数目录  
-│       └── helper.js  
-├── bin/               # 静态资源目录  
-│   ├── index.html  
-│   └── favicon.ico  
-├── package.json          # 项目依赖配置  
-└── README.md             # 项目说明文档  
