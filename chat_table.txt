@@ -1,0 +1,36 @@
+CREATE TABLE user (
+    id INT PRIMARY KEY AUTO_INCREMENT COMMENT '用户id',
+    name VARCHAR(50) NOT NULL UNIQUE COMMENT '用户名',
+    password VARCHAR(50) NOT NULL COMMENT '用户密码',
+    state ENUM('online', 'offline') DEFAULT 'offline' COMMENT '当前登录状态'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户信息表';
+
+CREATE TABLE friend (
+    userid INT NOT NULL COMMENT '用户id',
+    friendid INT NOT NULL COMMENT '好友id',
+    PRIMARY KEY (userid, friendid),
+    FOREIGN KEY (userid) REFERENCES user(id),
+    FOREIGN KEY (friendid) REFERENCES user(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='好友关系表';
+
+CREATE TABLE allgroup (
+    id INT PRIMARY KEY AUTO_INCREMENT COMMENT '组id',
+    groupname VARCHAR(50) NOT NULL UNIQUE COMMENT '组名称',
+    groupdesc VARCHAR(200) DEFAULT '' COMMENT '组功能描述'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='群组信息表';
+
+CREATE TABLE groupuser (
+    groupid INT NOT NULL COMMENT '组id',
+    userid INT NOT NULL COMMENT '组员id',
+    grouprole ENUM('creator', 'normal') DEFAULT 'normal' COMMENT '组内角色',
+    PRIMARY KEY (groupid, userid),
+    FOREIGN KEY (groupid) REFERENCES allgroup(id),
+    FOREIGN KEY (userid) REFERENCES user(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='群组成员表';
+
+CREATE TABLE offlinemessage (
+    userid INT NOT NULL COMMENT '用户id',
+    message VARCHAR(500) NOT NULL COMMENT '离线消息(存储Json字符串)',
+    FOREIGN KEY (userid) REFERENCES user(id),
+    INDEX idx_userid (userid) COMMENT '用户id索引'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='离线消息表';
